@@ -38,3 +38,9 @@ out/
 
 ### Kotlin ###
 .kotlin
+
+### claude 관련 ###
+.claude
+
+### QueryDSL 관련 ###
+**/generated/
