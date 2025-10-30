@@ -20,20 +20,11 @@ public class UserFacade {
 
     public UserInfo getUser(String userId) {
         User user = userService.getUser(userId);
-        if (user == null) {
-            throw new CoreException(ErrorType.NOT_FOUND,
-                "존재하지 않는 유저입니다: " + userId);
-        }
         return UserInfo.from(user);
     }
 
     public BigDecimal getPoint(String userId) {
-        BigDecimal point = userService.getPoint(userId);
-        if (point == null) {
-            throw new CoreException(ErrorType.NOT_FOUND,
-                "존재하지 않는 유저입니다: " + userId);
-        }
-        return point;
+        return userService.getPoint(userId);
     }
 
     public BigDecimal chargePoint(String userId, BigDecimal amount) {

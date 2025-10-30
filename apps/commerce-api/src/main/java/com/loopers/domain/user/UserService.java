@@ -23,14 +23,18 @@ public class UserService {
     }
 
     @Transactional(readOnly = true)
-    public Optional<User> getUser(String userId) {
-        return userRepository.findByUserId(userId);
+    public User getUser(String userId) {
+        return userRepository.findByUserId(userId)
+            .orElseThrow(() -> new CoreException(ErrorType.NOT_FOUND,
+                "존재하지 않는 유저입니다: " + userId));
     }
 
     @Transactional(readOnly = true)
-    public Optional<BigDecimal> getPoint(String userId) {
+    public BigDecimal getPoint(String userId) {
         return userRepository.findByUserId(userId)
-            .map(User::getPoint);
+            .map(User::getPoint)
+            .orElseThrow(() -> new CoreException(ErrorType.NOT_FOUND,
+                "존재하지 않는 유저입니다: " + userId));
     }
 
     @Transactional

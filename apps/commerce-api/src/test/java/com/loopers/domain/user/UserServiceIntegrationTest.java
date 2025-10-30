@@ -119,14 +119,15 @@ class UserServiceIntegrationTest {
             );
         }
 
-        @DisplayName("해당 ID의 회원이 존재하지 않을 경우, null이 반환된다.")
+        @DisplayName("해당 ID의 회원이 존재하지 않을 경우, NOT_FOUND 예외가 발생한다.")
         @Test
-        void returnsNull_whenUserNotExists() {
-            // when
-            User result = userService.getUser("nonexistent");
+        void throwsException_whenUserNotExists() {
+            // when & then
+            CoreException exception = assertThrows(CoreException.class, () ->
+                userService.getUser("nonexistent")
+            );
 
-            // then
-            assertThat(result).isNull();
+            assertThat(exception.getErrorType()).isEqualTo(ErrorType.NOT_FOUND);
         }
     }
 
@@ -153,14 +154,15 @@ class UserServiceIntegrationTest {
             assertThat(result).isEqualByComparingTo(BigDecimal.valueOf(5000));
         }
 
-        @DisplayName("해당 ID의 회원이 존재하지 않을 경우, null이 반환된다.")
+        @DisplayName("해당 ID의 회원이 존재하지 않을 경우, NOT_FOUND 예외가 발생한다.")
         @Test
-        void returnsNull_whenUserNotExists() {
-            // when
-            BigDecimal result = userService.getPoint("nonexistent");
+        void throwsException_whenUserNotExists() {
+            // when & then
+            CoreException exception = assertThrows(CoreException.class, () ->
+                userService.getPoint("nonexistent")
+            );
 
-            // then
-            assertThat(result).isNull();
+            assertThat(exception.getErrorType()).isEqualTo(ErrorType.NOT_FOUND);
         }
     }
 
