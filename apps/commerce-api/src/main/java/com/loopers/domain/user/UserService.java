@@ -23,16 +23,14 @@ public class UserService {
     }
 
     @Transactional(readOnly = true)
-    public User getUser(String userId) {
-        return userRepository.findByUserId(userId)
-            .orElse(null);
+    public Optional<User> getUser(String userId) {
+        return userRepository.findByUserId(userId);
     }
 
     @Transactional(readOnly = true)
-    public BigDecimal getPoint(String userId) {
+    public Optional<BigDecimal> getPoint(String userId) {
         return userRepository.findByUserId(userId)
-            .map(User::getPoint)
-            .orElse(null);
+            .map(User::getPoint);
     }
 
     @Transactional
