@@ -29,6 +29,11 @@ public class User extends BaseEntity {
 
     private String birthdate;
     private String email;
+
+    /**
+     * @deprecated 포인트 관리는 {@link com.loopers.domain.point.Point}를 사용하세요.
+     */
+    @Deprecated
     private BigDecimal point;
 
     @Builder
@@ -83,6 +88,10 @@ public class User extends BaseEntity {
         }
     }
 
+    /**
+     * @deprecated 포인트 충전은 {@link com.loopers.domain.point.PointService#chargePoint(String, BigDecimal)}를 사용하세요.
+     */
+    @Deprecated
     public void chargePoint(BigDecimal amount) {
         if (amount == null || amount.compareTo(BigDecimal.ZERO) <= 0) {
             throw new CoreException(ErrorType.BAD_REQUEST,

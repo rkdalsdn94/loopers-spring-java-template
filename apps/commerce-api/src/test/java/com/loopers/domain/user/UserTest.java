@@ -271,6 +271,7 @@ class UserTest {
 
     @DisplayName("포인트 충전 시")
     @Nested
+    @SuppressWarnings("deprecation")
     class ChargePoint {
         @DisplayName("0원을 충전하면, 실패한다.")
         @Test

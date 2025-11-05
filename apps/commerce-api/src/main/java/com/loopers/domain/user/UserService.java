@@ -29,6 +29,10 @@ public class UserService {
                 "존재하지 않는 유저입니다: " + userId));
     }
 
+    /**
+     * @deprecated 포인트 조회는 {@link com.loopers.domain.point.PointService#getBalance(String)}를 사용하세요.
+     */
+    @Deprecated
     @Transactional(readOnly = true)
     public BigDecimal getPoint(String userId) {
         return userRepository.findByUserId(userId)
@@ -37,6 +41,10 @@ public class UserService {
                 "존재하지 않는 유저입니다: " + userId));
     }
 
+    /**
+     * @deprecated 포인트 충전은 {@link com.loopers.domain.point.PointService#chargePoint(String, BigDecimal)}를 사용하세요.
+     */
+    @Deprecated
     @Transactional
     public BigDecimal chargePoint(String userId, BigDecimal amount) {
         User user = userRepository.findByUserId(userId)

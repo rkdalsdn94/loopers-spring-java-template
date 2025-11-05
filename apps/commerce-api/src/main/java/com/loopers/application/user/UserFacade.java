@@ -23,10 +23,18 @@ public class UserFacade {
         return UserInfo.from(user);
     }
 
+    /**
+     * @deprecated 포인트 조회는 {@link com.loopers.application.point.PointFacade#getBalance(String)}를 사용하세요.
+     */
+    @Deprecated
     public BigDecimal getPoint(String userId) {
         return userService.getPoint(userId);
     }
 
+    /**
+     * @deprecated 포인트 충전은 {@link com.loopers.application.point.PointFacade#chargePoint(String, BigDecimal)}를 사용하세요.
+     */
+    @Deprecated
     public BigDecimal chargePoint(String userId, BigDecimal amount) {
         return userService.chargePoint(userId, amount);
     }
